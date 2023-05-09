@@ -25,10 +25,9 @@ const Pagination = ({ pageChangeHandler, numberOfBlocks, blocksPerPage }) => {
       currentPage === numberOfPages ? setCanGoNext(false) : setCanGoNext(true);
     }, [numberOfPages, currentPage]);
 
-    // identify block height for the first block when page is changed (blockOffset)
+    // identify new page number when page is changed 
     useEffect(() => {
-      const blockOffset = (currentPage - 1) * blocksPerPage;
-      pageChangeHandler(blockOffset); 
+      pageChangeHandler(currentPage); 
     }, [currentPage]); 
 
     return (
