@@ -1,6 +1,7 @@
 import Table from "../../components/table";
 import Pagination from "../../components/pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { formatData, getData, getCurrentBlockHeight } from "./data";
 
 const StartPage = () => {
 	const [tableData, setTableData] = useState({
@@ -10,6 +11,22 @@ const StartPage = () => {
 		totalBlocks: 0,
 	});
 	const [currentPage, setCurrentPage] = useState(1);
+	useEffect(() => {
+		setTableData((previousState) => ({
+			...previousState,
+			rowData: [],
+			isLoading: true,
+		}));
+		getData(currentPage).then((info) => {
+			const { totalPages, totalBlocks, data } = info; 
+			setTableData({
+				isLoading: false,
+				rowData: formatData(data),
+				totalPages, 
+				totalBlocks: getCurrentBlockHeight().then(data => data[0].level),
+			});
+		});
+	}, [currentPage]); 
 	return (
 		<div>
 			<p>Number of blocks: {tableData.totalBlocks || "Loading..."}</p>
@@ -23,7 +40,7 @@ const StartPage = () => {
 			<Pagination
 				numberOfBlocks={tableData.totalBlocks}
 				pageChangeHandler={setCurrentPage}
-				blocksPerPage={50}
+				blocksPerPage={15}
 			/>
 		</div>
 	);
