@@ -50,9 +50,6 @@ const DetailsPage = () => {
 				elementsPerPage={elementsPerPage}
 				currentPage={currentPage}
 			/>
-
-
-
 		</div>
 	);
 };

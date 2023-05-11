@@ -40,21 +40,21 @@ const StartPage = () => {
 		  .finally(setLoading(false))
 	  }, [currentPage]);
 	  
-return (
-		<div>
-			<Table
-				blocks={blocks}
-				numTransactions={numTransactions}
-				loading={loading}
-			/>
-			<Pagination
-				numberOfElements={totalBlocks}
-				pageChangeHandler={setCurrentPage}
-				elementsPerPage={15}
-				currentPage={currentPage}
-			/>
-		</div>
-	);
+  return (
+    <div>
+      <Table
+        blocks={blocks}
+        numTransactions={numTransactions}
+        loading={loading}
+      />
+      <Pagination
+        numberOfElements={totalBlocks}
+        pageChangeHandler={setCurrentPage}
+        elementsPerPage={15}
+        currentPage={currentPage}
+      />
+    </div>
+  );
 };
 
 export default StartPage

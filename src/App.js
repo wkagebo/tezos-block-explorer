@@ -11,12 +11,12 @@ function App() {
         <Route path="/details" element={<DetailsPage />}/>
       </Routes>
       <a
-        className="App-link"
+        className="Website-link"
         href="https://tzkt.io/"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Powered by TzKT API
+        <h1>Powered by TzKT API</h1>
       </a>
     </div>
   );

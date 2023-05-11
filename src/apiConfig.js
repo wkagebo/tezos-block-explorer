@@ -1,3 +1,1 @@
-const BASE_URL="https://api.tzkt.io/v1"; 
-
-export {BASE_URL}; 
+export const BASE_URL="https://api.tzkt.io/v1"; 
