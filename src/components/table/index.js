@@ -1,59 +1,35 @@
 import React, { useMemo } from "react";
 import { useTable } from "react-table";
 import Loader from "../loader";
+import styles from './styles.module.css'
 
-// https://karthikraja555.medium.com/server-side-pagination-in-react-table-a4311b730d19
-
-const AppTable = ({ columns, data, isLoading, manualPagination = false }) => {
-  const columnData = useMemo(() => columns, [columns]);
-  const rowData = useMemo(() => data, [data]);
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns: columnData,
-    data: rowData,
-    manualPagination,
-  });
+const AppTable = ({ blocks, numTransactions, loading }) => {
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <table {...getTableProps()}>
-            <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>
-                      {column.render("Header")}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-              {rows.map((row, i) => {
-                prepareRow(row);
-                return (
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map((cell) => {
-                      return (
-                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </>
-      )}
-    </>
+    <div>
+				{loading ? (
+					<div>Loading...</div>
+				) : (
+					<>
+						<h1>Blocks</h1>
+						<table border={1}>
+							<tr>
+								<th>Level</th>
+								<th>Proposer</th>
+								<th>Timestamp</th>
+								<th>Transactions</th>
+							</tr>
+							{blocks.map((block, i) => (
+								<tr key={block.level}>
+									<td>{block.level}</td>
+									<td> {block.proposer.alias ? block.proposer.alias : block.proposer.address } </td>
+									<td>{block.timestamp}</td>
+									<td>{numTransactions[i]}</td>
+								</tr>
+							))}
+						</table>
+					</>
+				)}
+			</div>
   );
 };
 
