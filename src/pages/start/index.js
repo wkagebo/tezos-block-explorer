@@ -48,9 +48,9 @@ return (
 				loading={loading}
 			/>
 			<Pagination
-				numberOfBlocks={totalBlocks}
+				numberOfElements={totalBlocks}
 				pageChangeHandler={setCurrentPage}
-				blocksPerPage={15}
+				elementsPerPage={15}
 				currentPage={currentPage}
 			/>
 		</div>

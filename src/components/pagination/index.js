@@ -3,12 +3,12 @@ import styles from "./styles.module.css";
 
 const Pagination = ({ 
   pageChangeHandler, 
-  numberOfBlocks, 
-  blocksPerPage, 
+  numberOfElements, 
+  elementsPerPage, 
   currentPage,
 }) => {
     // number of pages needed for the table
-    const numberOfPages = Math.ceil(numberOfBlocks / blocksPerPage);
+    const numberOfPages = Math.ceil(numberOfElements / elementsPerPage);
 
     // array of page numbers
     const pages = [...new Array(numberOfPages)];
