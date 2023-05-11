@@ -3,19 +3,40 @@
 import TransactionTable from "../../components/transactions";
 import Pagination from "../../components/pagination";
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const DetailsPage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 
+  // access block level of clicked row
+  const location = useLocation(); 
+  const clickedBlock = location.state.block;
+
+  // Table data fetch 
+	const [transactions, setTransactions] = useState([]);
+	const [totalTransactions, setTotalTransactions] = useState(0);
+	const [loading, setLoading] = useState(false);
+
 	return (
 		<div>
-      <p>Hej hej hej</p>
+      <p>{}</p>
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
         </ul>
       </nav>
+      <TransactionTable
+        transactions={transactions}
+        loading={loading}
+        clickedBlock={clickedBlock}
+      />
+      <Pagination
+				numberOfElements={totalTransactions}
+				pageChangeHandler={setCurrentPage}
+				elementsPerPage={15}
+				currentPage={currentPage}
+			/>
+
 
 
 		</div>

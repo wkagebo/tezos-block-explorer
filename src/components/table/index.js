@@ -4,8 +4,7 @@ import styles from './styles.module.css'
 const AppTable = ({ blocks, numTransactions, loading }) => {
   const navigate = useNavigate();
   const handleRowClick = (level) => {
-    console.log(level);
-    navigate("/details"); 
+    navigate("/details", {state:{block: level}}); 
   }
 
 
