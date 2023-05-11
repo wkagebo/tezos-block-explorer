@@ -1,27 +1,30 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import styles from "./styles.module.css"; 
 
-const Pagination = ({ pageChangeHandler, numberOfBlocks, blocksPerPage }) => {
+const Pagination = ({ 
+  pageChangeHandler, 
+  numberOfBlocks, 
+  blocksPerPage, 
+  currentPage,
+}) => {
     // number of pages needed for the table
     const numberOfPages = Math.ceil(numberOfBlocks / blocksPerPage);
 
     // array of page numbers
-    const pages = [...new Array(numberOfBlocks)];
-
-    // state variable for tracking the current page
-    const [currentPage, setCurrentPage] = useState(1);
+    const pages = [...new Array(numberOfPages)];
 
     // state variables for toggling button availability
     const [canGoPrev, setCanGoPrev] = useState(false);
     const [canGoNext, setCanGoNext] = useState(true);
 
     // event handling for button clicks
-    const onPrevPageClick = () => setCurrentPage(currentPage - 1);
-    const onNextPageClick = () => setCurrentPage(currentPage + 1);
-    const onPageClick = (pageNumber) => setCurrentPage(pageNumber);
+    const onPrevPageClick = () => pageChangeHandler(currentPage - 1);
+    const onNextPageClick = () => pageChangeHandler(currentPage + 1);
+    const onPageClick = (pageNumber) => pageChangeHandler(pageNumber);
 
     // disable buttons if action is out of bounds
     useEffect(() => {
-      currentPage === 1 ? setCanGoPrev(fasle) : setCanGoPrev(true); 
+      currentPage === 1 ? setCanGoPrev(false) : setCanGoPrev(true); 
       currentPage === numberOfPages ? setCanGoNext(false) : setCanGoNext(true);
     }, [numberOfPages, currentPage]);
 
@@ -31,22 +34,30 @@ const Pagination = ({ pageChangeHandler, numberOfBlocks, blocksPerPage }) => {
     }, [currentPage]); 
 
     return (
-      <div>
-        <div>
+      <div className={styles.pagination}>
+        <div className={styles.pagebuttons}>
           <button 
+            className={styles.pageBtn}
             onClick={onPrevPageClick}
             disabled={!canGoPrev}
           >
             &#8249; 
           </button>
           {pages.map((_value, index) => (
+            // array of page number to be rendered
+            [index - 9, index, index + 1, index + 2, index + 10].includes(currentPage) &&
             <button
               onClick={() => onPageClick(index + 1)}
+              className={`${styles.pageBtn}  ${
+                index + 1 === currentPage ? styles.activeBtn : styles.pageBtn
+              }`}
+              key={index + 1}
             >
               {index + 1}
             </button>
           ))}
           <button 
+            className={styles.pageBtn}
             onClick={onNextPageClick}
             disabled={!canGoNext}
           >
