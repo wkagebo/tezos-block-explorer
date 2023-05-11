@@ -1,9 +1,14 @@
-import React, { useMemo } from "react";
-import { useTable } from "react-table";
-import Loader from "../loader";
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css'
 
 const AppTable = ({ blocks, numTransactions, loading }) => {
+  const navigate = useNavigate();
+  const handleRowClick = (level) => {
+    console.log(level);
+    navigate("/details"); 
+  }
+
+
   return (
     <div>
 				{loading ? (
@@ -19,7 +24,7 @@ const AppTable = ({ blocks, numTransactions, loading }) => {
 								<th>Transactions</th>
 							</tr>
 							{blocks.map((block, i) => (
-								<tr key={block.level}>
+								<tr key={block.level} onClick={() => handleRowClick(block.level)}>
 									<td>{block.level}</td>
 									<td> {block.proposer.alias ? block.proposer.alias : block.proposer.address } </td>
 									<td>{block.timestamp}</td>
