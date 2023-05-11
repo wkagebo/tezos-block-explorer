@@ -16,7 +16,7 @@ const TransactionTable = ({ transactions, loading, clickedBlock }) => {
                         <th>Status</th>
                     </tr>
                     {transactions.map((transaction, i) => (
-                        <tr key={transaction.sender.address}>
+                        <tr key={transaction.id}>
                             <td>{transaction.sender.alias? transaction.sender.alias : transaction.sender.address}</td>
                             <td> {transaction.target.alias? transaction.target.alias : transaction.target.address} </td>
                             <td>{transaction.amount}</td>
