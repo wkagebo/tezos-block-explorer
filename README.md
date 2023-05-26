@@ -17,5 +17,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-![preview1](https://github.com/wkagebo/tezos-blocks/assets/89011379/3befaa41-1b7b-4319-ad90-ea5100900c42)
-![preview2](https://github.com/wkagebo/tezos-blocks/assets/89011379/94cd8e0f-ef20-4ed9-bf9b-a05cc944f6f0)
+Home page:
+<img width="1674" alt="Skärmavbild 2023-05-26 kl  02 05 52" src="https://github.com/wkagebo/tezos-blocks/assets/89011379/095f5755-8a52-4553-88cf-8a3ef9d34de6">
+Details page:
+<img width="1677" alt="Skärmavbild 2023-05-26 kl  02 06 15" src="https://github.com/wkagebo/tezos-blocks/assets/89011379/80a56d57-e99a-44fa-b096-250246c41009">
